@@ -84,10 +84,11 @@ class Snake(GameObject):
     positions = [GameObject.position]
     last = None
     next_direction = None
+    direction = 'RIGHT'
 
     def __init__(self):
         self.length = Snake.length
-        self.direction = 'RIGHT'
+        self.direction = Snake.direction
         self.positions = Snake.positions
         self.body_color = Snake.body_color
         self.last = Snake.last
@@ -114,21 +115,25 @@ class Snake(GameObject):
             self.direction = self.next_direction
             self.next_direction = None
 
-    def handle_keys(game_object):
+    def handle_keys(self):
         """Функция обработки действий пользователя"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and game_object.direction != DOWN:
-                    game_object.next_direction = 'UP'
-                elif event.key == pygame.K_DOWN and game_object.direction != UP:
-                    game_object.next_direction = 'DOWN'
-                elif event.key == pygame.K_LEFT and game_object.direction != RIGHT:
-                    game_object.next_direction = 'LEFT'
-                elif event.key == pygame.K_RIGHT and game_object.direction != LEFT:
-                    game_object.next_direction = 'RIGHT'
+                if (event.key == pygame.K_UP
+                   and self.direction != DOWN):
+                    self.next_direction = 'UP'
+                elif (event.key == pygame.K_DOWN
+                      and self.direction != UP):
+                    self.next_direction = 'DOWN'
+                elif (event.key == pygame.K_LEFT
+                      and self.direction != RIGHT):
+                    self.next_direction = 'LEFT'
+                elif (event.key == pygame.K_RIGHT
+                      and self.direction != LEFT):
+                    self.next_direction = 'RIGHT'
 
     def move(self):
         """Модуль,описывающий движение змейки."""
