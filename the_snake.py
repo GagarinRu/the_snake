@@ -42,6 +42,7 @@ clock = pygame.time.Clock()
 # Тут опишите все классы игры.
 class GameObject:
     """это базовый класс, от которого наследуются другие игровые объекты."""
+
     position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
 
     def __init__(self):
@@ -50,6 +51,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс,описывающий яблоко."""
+
     body_color = APPLE_COLOR
 
     def __init__(self):
@@ -58,14 +60,12 @@ class Apple(GameObject):
 
     def generate_position(self):
         """Метод,генерирующий позицию яблока."""
-
         return ((randint(0, GRID_WIDTH - 1) * GRID_SIZE),
                 (randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
                 )
 
     def draw(self):
         """Метод draw класса Apple."""
-
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -73,6 +73,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Класс, описывающий змейку."""
+
     body_color = SNAKE_COLOR
     length = 1
     positions = [GameObject.position]
@@ -89,7 +90,6 @@ class Snake(GameObject):
 
     def draw(self):
         """Метод draw класса Snake."""
-
         for position in self.positions[:-1]:
             rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
             pygame.draw.rect(screen, self.body_color, rect)
