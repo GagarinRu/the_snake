@@ -44,15 +44,20 @@ class GameObject:
     """это базовый класс, от которого наследуются другие игровые объекты."""
 
     position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
+    body_color = (0, 0, 0)
 
     def __init__(self):
         pass
+
+    def draw(self):
+        """Метод, отрисовывающий объекты"""
 
 
 class Apple(GameObject):
     """Класс,описывающий яблоко."""
 
     body_color = APPLE_COLOR
+    randomize_position = ''
 
     def __init__(self):
         self.body_color = Apple.body_color
