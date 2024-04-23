@@ -55,14 +55,17 @@ class Apple(GameObject):
     def __init__(self):
         self.body_color = Apple.body_color
         Apple.position = self.generate_position()
-    """Метод,генерирующий позицию яблока."""
+
     def generate_position(self):
+        """Метод,генерирующий позицию яблока."""
+
         return ((randint(0, GRID_WIDTH - 1) * GRID_SIZE),
                 (randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
                 )
 
-    """Метод draw класса Apple."""
     def draw(self):
+        """Метод draw класса Apple."""
+
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -84,8 +87,9 @@ class Snake(GameObject):
         self.last = Snake.last
         self.next_direction = Snake.next_direction
 
-    """Метод draw класса Snake."""
     def draw(self):
+        """Метод draw класса Snake."""
+
         for position in self.positions[:-1]:
             rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
             pygame.draw.rect(screen, self.body_color, rect)
@@ -98,13 +102,15 @@ class Snake(GameObject):
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
-    """Метод,обновляющий атрибут направления движения."""
+
     def update_direction(self):
+        """Метод,обновляющий атрибут направления движения."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
-    """Модуль,описывающий движение змейки."""
+
     def move(self):
+        """Модуль,описывающий движение змейки."""
         head_snake = self.get_head_position()
         dx, dy = {'UP': UP,
                   'DOWN': DOWN,
@@ -127,6 +133,7 @@ class Snake(GameObject):
                 self.positions.pop()
 
     def boarder_out(self, coord):
+        """Модуль, отвечаюищий за перемещение на границы экрана"""
         x, y = coord
         if x < 0:
             coord = (SCREEN_WIDTH, y)
@@ -139,15 +146,17 @@ class Snake(GameObject):
         return coord
 
     def get_head_position(self):
+        """Модуль, создающий координаты головы"""
         return self.positions[0]
 
     def reset(self):
+        """Модуль, сбрасывающий параметры змейки"""
         self.length = 1
         self.positions = [GameObject.position]
         self.direction = choice(['UP', 'DOWN', 'LEFT', 'RIGHT'])
 
-    # Функция обработки действий пользователя
     def handle_keys(self):
+        """Функция обработки действий пользователя"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -164,7 +173,7 @@ class Snake(GameObject):
 
 
 def main():
-    # Инициализация PyGame:
+    """Инициализация PyGame:"""
     pygame.init()
     # Тут нужно создать экземпляры классов.
     apple = Apple()
