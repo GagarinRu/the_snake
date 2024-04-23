@@ -41,10 +41,7 @@ clock = pygame.time.Clock()
 
 # Тут опишите все классы игры.
 class GameObject:
-    """это базовый класс, от которого наследуются другие игровые объекты.
-    Он содержит общие атрибуты игровых объектов — например, эти атрибуты
-    описывают позицию и цвет объекта. Этот же класс содержит и заготовку
-    метода для отрисовки объекта на игровом поле """
+    """это базовый класс, от которого наследуются другие игровые объекты."""
     position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
 
     def __init__(self):
@@ -52,19 +49,19 @@ class GameObject:
 
 
 class Apple(GameObject):
-
+    """Класс,описывающий яблоко."""
     body_color = APPLE_COLOR
 
     def __init__(self):
         self.body_color = Apple.body_color
         Apple.position = self.generate_position()
-
+    """Метод,генерирующий позицию яблока."""
     def generate_position(self):
         return ((randint(0, GRID_WIDTH - 1) * GRID_SIZE),
                 (randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
                 )
 
-    # Метод draw класса Apple
+    """Метод draw класса Apple."""
     def draw(self):
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
@@ -72,7 +69,7 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
-
+    """Класс, описывающий змейку."""
     body_color = SNAKE_COLOR
     length = 1
     positions = [GameObject.position]
@@ -87,7 +84,7 @@ class Snake(GameObject):
         self.last = Snake.last
         self.next_direction = Snake.next_direction
 
-    # Метод draw класса Snake
+    """Метод draw класса Snake."""
     def draw(self):
         for position in self.positions[:-1]:
             rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
@@ -101,12 +98,12 @@ class Snake(GameObject):
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
-
+    """Метод,обновляющий атрибут направления движения."""
     def update_direction(self):
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
-
+    """Модуль,описывающий движение змейки."""
     def move(self):
         head_snake = self.get_head_position()
         dx, dy = {'UP': UP,
