@@ -46,29 +46,39 @@ class GameObject:
     описывают позицию и цвет объекта. Этот же класс содержит и заготовку
     метода для отрисовки объекта на игровом поле """
     position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
+
     def __init__(self):
         pass
+
+
 class Apple(GameObject):
+
     body_color = APPLE_COLOR
+
     def __init__(self):
         self.body_color = Apple.body_color
         Apple.position = self.generate_position()
+
     def generate_position(self):
         return ((randint(0, GRID_WIDTH - 1) * GRID_SIZE),
                 (randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
                 )
+
     # Метод draw класса Apple
     def draw(self):
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
+
 class Snake(GameObject):
+
     body_color = SNAKE_COLOR
     length = 1
     positions = [GameObject.position]
     last = None
     next_direction = None
+
     def __init__(self):
         self.length = Snake.length
         self.direction = 'RIGHT'
@@ -91,7 +101,7 @@ class Snake(GameObject):
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
-    #Метод обновления направления после нажатия на кнопку
+
     def update_direction(self):
         if self.next_direction:
             self.direction = self.next_direction
@@ -133,7 +143,7 @@ class Snake(GameObject):
 
     def get_head_position(self):
         return self.positions[0]
-    
+
     def reset(self):
         self.length = 1
         self.positions = [GameObject.position]
@@ -155,6 +165,7 @@ class Snake(GameObject):
                 elif event.key == pygame.K_RIGHT and self.direction != LEFT:
                     self.next_direction = 'RIGHT'
 
+
 def main():
     # Инициализация PyGame:
     pygame.init()
@@ -171,7 +182,8 @@ def main():
         apple.draw()
         snake.draw()
         pygame.display.update()
-    pygame.quit( )   
+    pygame.quit()
+
 
 if __name__ == '__main__':
-    main( )
+    main()
