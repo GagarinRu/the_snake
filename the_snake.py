@@ -57,7 +57,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс,описывающий яблоко.параметры вписаны для прохождения тестов"""
-    
+
     body_color = ''
     positiona = ''
     randomize_position = ''
