@@ -65,7 +65,6 @@ class Apple(GameObject):
         self.body_color = APPLE_COLOR
         GameObject.position = self.randomize_position(GameObject.positions[0])
 
-
     def randomize_position(self, random_list):
         """Метод,генерирующий позицию яблока."""
         while random_list in GameObject.positions:
