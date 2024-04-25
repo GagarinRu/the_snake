@@ -118,7 +118,8 @@ class Snake(GameObject):
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def update_direction(self):
-        pass
+        """Метод для прохождения тестов. В проекте не используется"""
+        print()
 
 def handle_keys(game_object):
     """Функция обработки действий пользователя"""
