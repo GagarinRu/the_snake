@@ -121,6 +121,7 @@ class Snake(GameObject):
         """Метод для прохождения тестов. В проекте не используется"""
         print()
 
+
 def handle_keys(game_object):
     """Функция обработки действий пользователя"""
     handle_keys_list = {
