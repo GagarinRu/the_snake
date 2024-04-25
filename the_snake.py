@@ -83,6 +83,7 @@ class Snake(GameObject):
         self.direction = ''
         self.body_color = SNAKE_COLOR
         self.reset()
+        self.position = ''
 
     def draw(self):
         """Метод draw класса Snake."""
@@ -116,6 +117,8 @@ class Snake(GameObject):
         GameObject.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
+    def update_direction(self):
+        pass
 
 def handle_keys(game_object):
     """Функция обработки действий пользователя"""
