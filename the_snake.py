@@ -90,7 +90,7 @@ class Snake(GameObject):
     def draw(self):
         """Метод draw класса Snake."""
         # Отрисовка головы змейки
-        head_rect = pg.Rect(Snake.positions[0], (GRID_SIZE, GRID_SIZE))
+        head_rect = pg.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pg.draw.rect(screen, self.body_color, head_rect)
         pg.draw.rect(screen, BORDER_COLOR, head_rect, 1)
         # Затирание последнего сегмента
@@ -100,7 +100,7 @@ class Snake(GameObject):
 
     def move(self):
         """Модуль,описывающий движение змейки."""
-        head_x, head_y = Snake.positions[0]
+        head_x, head_y = self.positions[0]
 
         new_head_x, new_head_y = self.direction
         x = head_x + (new_head_x * GRID_SIZE)
@@ -115,13 +115,13 @@ class Snake(GameObject):
 
     def reset(self):
         """Модуль, сбрасывающий параметры змейки"""
-        GameObject.length = 1
-        GameObject.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
+        Snake.length = 1
+        Snake.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def update_direction(self):
         """Метод для прохождения тестов. В проекте не используется"""
-        print()
+        pass
 
 
 def get_occupied_cells(*args: GameObject):
