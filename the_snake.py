@@ -42,6 +42,7 @@ clock = pg.time.Clock()
 # Тут опишите все классы игры.
 class GameObject:
     """это базовый класс, от которого наследуются другие игровые объекты."""
+    
     body_color = ''
     positiona = ''
     randomize_position = ''
