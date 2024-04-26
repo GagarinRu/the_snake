@@ -57,17 +57,18 @@ class GameObject:
 class Apple(GameObject):
     """Класс,описывающий яблоко.параметры вписаны для прохождения тестов"""
 
-    def __init__(self, occupied_list):
+    def __init__(self, occupied_list=[]):
         self.body_color = APPLE_COLOR
         Apple.occupied_list = occupied_list
-        Apple.position = self.randomize_position(occupied_list[0])
+        Apple.position = self.randomize_position()
 
     def randomize_position(self, random_list=[]):
         """Метод,генерирующий позицию яблока."""
-        while random_list in self.occupied_list:
+        while True:
             random_list = ((randint(0, GRID_WIDTH - 1) * GRID_SIZE),
                            (randint(0, GRID_HEIGHT - 1) * GRID_SIZE))
-            break
+            if random_list not in self.occupied_list:
+                break
         return random_list
 
     def draw(self):
