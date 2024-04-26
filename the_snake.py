@@ -82,13 +82,10 @@ class Snake(GameObject):
     """Класс, описывающий змейку."""
 
     def __init__(self):
-        self.direction = ''
         self.body_color = SNAKE_COLOR
         self.reset()
         self.position = ''
-        self.lenght = ''
         self.last = None
-        self.positions = ''
 
     def draw(self):
         """Метод draw класса Snake."""
@@ -170,13 +167,12 @@ def handle_keys(game_object):
 
 
 def main():
-    """Инициализация Pg:"""
+    """Инициализация Pygame:"""
     pg.init()
     snake = Snake()
     apple = Apple(get_occupied_cells(Snake))
     while True:
         clock.tick(SPEED)
-
         handle_keys(snake)
         snake.move()
         if Snake.positions[0] in Snake.positions[1:]:
