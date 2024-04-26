@@ -42,6 +42,9 @@ clock = pg.time.Clock()
 # Тут опишите все классы игры.
 class GameObject:
     """это базовый класс, от которого наследуются другие игровые объекты."""
+    body_color = ''
+    positiona = ''
+    randomize_position = ''
 
     def __init__(self):
         self.body_color = BOARD_BACKGROUND_COLOR
@@ -57,10 +60,6 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс,описывающий яблоко.параметры вписаны для прохождения тестов"""
-
-    body_color = ''
-    positiona = ''
-    randomize_position = ''
 
     def __init__(self):
         self.body_color = APPLE_COLOR
