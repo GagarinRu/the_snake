@@ -64,7 +64,7 @@ class Apple(GameObject):
 
     def __init__(self):
         self.body_color = APPLE_COLOR
-        GameObject.position = self.randomize_position(GameObject.positions[0])
+        Apple.position = self.randomize_position(GameObject.positions[0])
 
     def randomize_position(self, random_list):
         """Метод,генерирующий позицию яблока."""
@@ -172,8 +172,8 @@ def main():
             screen.fill(BOARD_BACKGROUND_COLOR)
             snake.reset()
         else:
-            if GameObject.positions[0] == GameObject.position:
-                GameObject.position = apple.randomize_position(
+            if GameObject.positions[0] == Apple.position:
+                Apple.position = apple.randomize_position(
                     GameObject.positions[0])
                 GameObject.length += 1
             elif len(GameObject.positions) > GameObject.length:
