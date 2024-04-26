@@ -101,7 +101,6 @@ class Snake(GameObject):
     def move(self):
         """Модуль,описывающий движение змейки."""
         head_x, head_y = self.positions[0]
-
         new_head_x, new_head_y = self.direction
         x = head_x + (new_head_x * GRID_SIZE)
         y = head_y + (new_head_y * GRID_SIZE)
@@ -130,7 +129,6 @@ def get_occupied_cells(*args: GameObject):
     for game_object in args:
         if hasattr(game_object, 'positions'):
             positions_list.extend(game_object.positions)
-
     return positions_list
 
 
@@ -187,7 +185,6 @@ def main():
                 Snake.last = Snake.positions.pop()
             else:
                 Snake.last = None
-
         apple.draw()
         snake.draw()
         pg.display.update()
