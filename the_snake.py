@@ -50,7 +50,7 @@ class GameObject:
 
     def draw(self):
         """Метод, отрисовывающий объекты"""
-        raise NotImplementedError(self.__class__.__name__ +
+        raise NotImplementedError(self.__class__.__name__ + 
                                   ':не найден метод draw')
 
 
