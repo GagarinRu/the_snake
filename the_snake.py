@@ -2,8 +2,6 @@ from random import choice, randint
 
 import pygame as pg
 
-from gameparts.exceptions import NotImplementedError
-
 # Константы для размеров поля и сетки:
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 GRID_SIZE = 20
@@ -52,7 +50,8 @@ class GameObject:
 
     def draw(self):
         """Метод, отрисовывающий объекты"""
-        raise NotImplementedError
+        raise NotImplementedError(self.__class__.__name__ +
+                                  ':не найден метод draw')
 
 
 class Apple(GameObject):
@@ -81,10 +80,10 @@ class Snake(GameObject):
     """Класс, описывающий змейку."""
 
     def __init__(self):
-        self.body_color = SNAKE_COLOR
         self.reset()
         self.last = None
-        self.position = ''
+        super().__init__()
+        self.body_color = SNAKE_COLOR
 
     def draw(self):
         """Метод draw класса Snake."""
@@ -117,7 +116,8 @@ class Snake(GameObject):
     def reset(self):
         """Модуль, сбрасывающий параметры змейки"""
         self.length = 1
-        self.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
+        self.positions = [(((GRID_WIDTH - 1) // 2) * GRID_SIZE,
+                          ((GRID_HEIGHT - 1) // 2) * GRID_SIZE)]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def update_direction(self):
