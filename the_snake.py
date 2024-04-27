@@ -80,10 +80,10 @@ class Snake(GameObject):
     """Класс, описывающий змейку."""
 
     def __init__(self):
-        self.reset()
         self.last = None
         super().__init__()
         self.body_color = SNAKE_COLOR
+        self.reset()
 
     def draw(self):
         """Метод draw класса Snake."""
@@ -116,8 +116,7 @@ class Snake(GameObject):
     def reset(self):
         """Модуль, сбрасывающий параметры змейки"""
         self.length = 1
-        self.positions = [(((GRID_WIDTH - 1) // 2) * GRID_SIZE,
-                          ((GRID_HEIGHT - 1) // 2) * GRID_SIZE)]
+        self.positions = [self.position]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def update_direction(self):
